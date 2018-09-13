@@ -10,14 +10,20 @@ import matplotlib.tri as mtri
 # For more informations see here: https://en.wikipedia.org/wiki/M%C3%B6bius_strip
 #====================================================================================
 
-def mobius(start=-0.5, stop=-0.5, numSamples1=50, numSamples2=10, colored=True):
+def mobius(start=-0.5, stop=0.5, numSamplesU=50, numSamplesV=10, colored=True):
 	fig = plt.figure()
 	cmap = None
 
+	# validate parameters
+	if stop < start:
+		return -1
+	if numSamplesU <= 0 or numSamplesV <= 0:
+		return -2
+
 	# Make a mesh in the space of parameterisation variables u and v
 	# num : Number of samples to generate. Default is 50. Must be non-negative.
-	u = np.linspace(0, 2.0 * np.pi, endpoint=True, num=numSamples1)
-	v = np.linspace(start, stop, endpoint=True, num=numSamples2)
+	u = np.linspace(0, 2.0 * np.pi, endpoint=True, num=numSamplesU)
+	v = np.linspace(start, stop, endpoint=True, num=numSamplesV)
 	u, v = np.meshgrid(u, v)
 	u, v = u.flatten(), v.flatten()
 
@@ -39,4 +45,9 @@ def mobius(start=-0.5, stop=-0.5, numSamples1=50, numSamples2=10, colored=True):
 
 	ax.plot_trisurf(x, y, z, triangles=tri.triangles, cmap=cmap)
 	ax.set_zlim(-1, 1)
-	plt.show()
+
+	# show
+	#plt.show()
+
+	# save
+	fig.savefig('mobuis.png', bbox_inches="tight")
