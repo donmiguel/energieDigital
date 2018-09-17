@@ -10,7 +10,7 @@ import matplotlib.tri as mtri
 # For more informations see here: https://en.wikipedia.org/wiki/M%C3%B6bius_strip
 #====================================================================================
 
-def mobius(start=-0.5, stop=0.5, numSamplesU=50, numSamplesV=10, colored=True):
+def mobius(start=-0.5, stop=0.5, numSamplesU=50, numSamplesV=10, colored=True, path=''):
 	fig = plt.figure()
 	cmap = None
 
@@ -50,4 +50,4 @@ def mobius(start=-0.5, stop=0.5, numSamplesU=50, numSamplesV=10, colored=True):
 	#plt.show()
 
 	# save
-	fig.savefig('mobuis.png', bbox_inches="tight")
+	fig.savefig(path + 'mobuis.png', bbox_inches="tight")
