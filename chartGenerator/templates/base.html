@@ -1,15 +1,57 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Chart Generator</title>
+    <title>Chart Generator..</title>
+
+
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+    <noscript><link rel="stylesheet" href="{% static 'assets/css/noscript.css' %}" /></noscript>
+
 </head>
+
 <body>
 
-{% block content %}
-
-
+{% block header %}
+<!-- Header -->
+<header id="header">
+    <h1 id="logo"><a href="index.html">Twenty <span>by HTML5 UP</span></a></h1>
+    <nav id="nav">
+        <ul>
+            <li class="current"><a href="/cg/">Home</a></li>
+            <li class="chartform"><a href="chartform">New Chart</a></li>
+        </ul>
+    </nav>
+</header>
 {% endblock %}
 
+{% block banner %}
+{% endblock %}
+
+<article id="main">
+    {% block content %}
+
+
+    {% endblock %}
+</article>
+
+<!-- Footer -->
+<footer id="footer">
+    <ul class="copyright">
+        <li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+    </ul>
+</footer>
+
+<!-- Scripts -->
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.dropotron.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.scrollex.min.js' %}"></script>
+<script src="{% static 'assets/js/browser.min.js' %}"></script>
+<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+<script src="{% static 'assets/js/util.js' %}"></script>
+<script src="{% static 'assets/js/main.js' %}"></script>
 </body>
 </html>

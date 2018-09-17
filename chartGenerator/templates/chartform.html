@@ -1,8 +1,36 @@
-{% block content %}
-<h1>Provide some parameters to generate a chart</h1>
+{% extends 'base.html' %}
 
-<form method="POST">{% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Generate</button>
-</form>
+{% block content %}
+
+    <header class="special container">
+        <span class="icon fa-mobile"></span>
+        <h2>Enter you chart <strong>parameters</strong></h2>
+    </header>
+
+    <!-- One -->
+    <section class="wrapper style4 container">
+
+        <!-- Content -->
+        <div class="content">
+
+            <form method="POST">{% csrf_token %}
+                <div class="row gtr-50">
+                    {% for field in form %}
+                        <div class="col-12 col-12-mobile">
+                            {{ field.label_tag  }} {{ field }}
+                        </div>
+                    {% endfor %}
+
+                    <div class="col-12">
+                        <ul class="buttons">
+                            <li><input type="submit" class="special" value="Generate"></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </section>
+
 {% endblock %}

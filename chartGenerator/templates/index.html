@@ -1,6 +1,54 @@
+{% extends 'base.html' %}
+{% block header %}
+<!-- Header -->
+<header id="header" class="alt">
+    <h1 id="logo"><a href="index.html">Twenty <span>by HTML5 UP</span></a></h1>
+    <nav id="nav">
+        <ul>
+            <li class="current"><a href="/cg/">Home</a></li>
+            <li class="chartform"><a href="chartform">New Chart</a></li>
+        </ul>
+    </nav>
+</header>
+{% endblock %}
+
+{% block banner %}
+
+<!-- Banner -->
+<section id="banner">
+
+    <!--
+        ".inner" is set up as an inline-block so it automatically expands
+        in both directions to fit whatever's inside it. This means it won't
+        automatically wrap lines, so be sure to use line breaks where
+        appropriate (<br />).
+    -->
+    <div class="inner">
+
+        <header>
+            <h2>chart generation</h2>
+        </header>
+
+        <footer>
+            <ul class="buttons stacked">
+                <!--<li><a href="#main" class="button fit scrolly">Tell Me More</a></li>-->
+            </ul>
+        </footer>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
 {% block content %}
-<h1>Welcome to the chart generation app!</h1>
-<br>
-<br>
-<a href="chartform">Another page</a>
+
+
+<header class="special container">
+    <span class="icon fa-bar-chart-o"></span>
+    <h2>This is my <strong>chart generation</strong> tool</h2>
+    <br />
+    This tool generates a mobius chart. You can provide some parameters to change the chart.
+</header>
+
 {% endblock %}

@@ -1,8 +1,20 @@
+{% extends 'base.html' %}
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
 
 {% block content %}
-<h1>Generated chart</h1>
+    <header class="special container">
+        <span class="icon fa-line-chart"></span>
+        <h2>Generated chart</h2>
+        <p>Where that in the center faces the nameless horrors alone.</p>
+    </header>
 
-<img src="{% static 'mobius.png' %}" />
+    <section class="wrapper style4 container">
+
+        <!-- Content -->
+        <div class="content">
+            <img src="{% static 'mobius.png' %}" />
+        </div>
+    </section>
+
+
 {% endblock %}
