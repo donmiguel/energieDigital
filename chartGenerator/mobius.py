@@ -50,4 +50,4 @@ def mobius(start=-0.5, stop=0.5, numSamplesU=50, numSamplesV=10, colored=True, p
 	#plt.show()
 
 	# save
-	fig.savefig(path + 'mobuis.png', bbox_inches="tight")
+	fig.savefig(path + 'mobius.png', bbox_inches="tight")
