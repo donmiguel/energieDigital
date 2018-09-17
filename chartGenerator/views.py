@@ -22,6 +22,6 @@ def generateChart(request):
 	template = loader.get_template('chart.html')
 
 	# generate chart
-	mobius()
+	mobius(path='chartGenerator/static/')
 
 	return HttpResponse(template.render(None, request))
