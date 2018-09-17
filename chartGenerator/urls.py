@@ -4,6 +4,8 @@ from chartGenerator import views
 
 
 urlpatterns = [
-	path('', views.indexHelloWorld),
+	path('hw', views.indexHelloWorld),
+	path('chart', views.generateChart),
+	path('', views.index),
 ]
 
