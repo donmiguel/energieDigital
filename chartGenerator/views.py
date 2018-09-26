@@ -40,7 +40,8 @@ def generateChart(request):
 		if form.is_valid():
 			# generate chart
 			parameter = form.save(commit=False)
-			mobius(start=parameter.start, stop=parameter.stop, path='chartGenerator/static/')
+			mobius(start=parameter.start, stop=parameter.stop, colored=parameter.colored,
+			       numSamplesU=parameter.numSamplesU, numSamplesV=parameter.numSamplesU, path='chartGenerator/static/')
 			parameter.save()
 			return displayChart(request)
 	else:
