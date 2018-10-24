@@ -54,15 +54,17 @@ def generateChart(request):
 
 
 def exampleView(request):
-	dataSource = 'chartGenerator/daq/example.csv'
+	dataSource = 'chartGenerator/daq/dataFile.csv'
 
 	# Datenimport
-	data = np.loadtxt(dataSource, dtype='f', delimiter=';', skiprows=1, usecols=[1, 2, 3, 4, 10])
-	hGlo = data[:, 0]  # [W/m2]
-	hDif = data[:, 1]  # [W/m2]
-	tAmb = data[:, 2]  # [W/m2]
-	pLoad = data[:, 3]  # [W] Verbrauchsprofil
-	zapf = data[:, 4]  # [l/15min] Profil für Warmwasserbezug
+	data = np.loadtxt(dataSource, dtype='f', delimiter=';', skiprows=1, usecols=[1, 2, 3, 4, 5, 6 ,7])
+	temp = data[:, 0]  # Temp [Grad Celsius]
+	prea = data[:, 1]  # Druck [hPa]
+	humi = data[:, 2]  # Feuchte [%]
+	resi = data[:, 3] # VOC [100kOhm]
+	tempR= data[:, 4]  # CpuTemp [Grad Celsius]
+	resH = data[:, 5]  # Strahlung [Watt/m2]
+	resT = data[:, 6]  # Temperatur Pyranometer [Grad Celsius]
 
 	tutcIn = np.loadtxt(dataSource, dtype='U', delimiter=';', skiprows=1, usecols=[0])
 	tutc = []  # leere Liste
@@ -80,21 +82,10 @@ def exampleView(request):
 
 	deltaT = lfStd[1] - lfStd[0]  # [h]
 
-	hDir = hGlo - hDif
-
-	hDir[hDir < 0] = 0  # wichtig
-	hDif[hDif < 0] = 0  # wichtig
-	hGlo[hGlo < 0] = 0  # wichtig
-
-	a = int(0)  # Anfangstag
-	e = int(7 * 24 / deltaT)  # Endtag
-
 	plt.figure(3, figsize=(8,4))# Grösse des Plots (figsize) in Zoll
-	plt.plot_date(tutc[a:e], hGlo[a:e], 'g', label='Globalstrahlung')
-	plt.plot_date(tutc[a:e], hDir[a:e], 'r', label='Direktstrahlung')
-	plt.plot_date(tutc[a:e], hDif[a:e], 'b', label='Diffusstrahlung')
+	plt.plot_date(tutc, temp, 'g', label='Temperatur')
 	plt.xlabel('Zeit [h]');
-	plt.ylabel('Strahlung [W/m2]');
+	plt.ylabel('Temperatur [C°]');
 	plt.legend(loc="upper left")
 
 	plt.savefig('chartGenerator/static/chart.png', bbox_inches="tight")
