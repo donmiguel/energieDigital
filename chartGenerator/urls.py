@@ -7,6 +7,9 @@ urlpatterns = [
 	path('hw', views.indexHelloWorld),
 	path('chart', views.displayChart),
 	path('chartform', views.generateChart),
+
+	# example view for csv import
+	path('example', views.exampleView),
 	path('', views.index),
 ]
 
