@@ -57,7 +57,7 @@ def exampleView(request):
 	dataSource = 'chartGenerator/daq/dataFile.csv'
 
 	# Datenimport
-	data = np.loadtxt(dataSource, dtype='f', delimiter=';', skiprows=1, usecols=[1, 2, 3, 4, 5, 6 ,7])
+	data = np.loadtxt(dataSource, dtype='f', delimiter=';', skiprows=0, usecols=[1, 2, 3, 4, 5, 6 ,7])
 	temp = data[:, 0]  # Temp [Grad Celsius]
 	prea = data[:, 1]  # Druck [hPa]
 	humi = data[:, 2]  # Feuchte [%]
@@ -66,7 +66,7 @@ def exampleView(request):
 	resH = data[:, 5]  # Strahlung [Watt/m2]
 	resT = data[:, 6]  # Temperatur Pyranometer [Grad Celsius]
 
-	tutcIn = np.loadtxt(dataSource, dtype='U', delimiter=';', skiprows=1, usecols=[0])
+	tutcIn = np.loadtxt(dataSource, dtype='U', delimiter=';', skiprows=0, usecols=[0])
 	tutc = []  # leere Liste
 	for t in range(tutcIn.size):
 		tutc.append(dt.datetime.strptime(tutcIn[t], '%Y-%m-%d %H:%M:%S'))

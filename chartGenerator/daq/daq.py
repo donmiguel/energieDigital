@@ -7,30 +7,40 @@ Created on Thu Oct 11 14:29:53 2018
 
 @author: pi
 """
+import os
+
 import comDevice
 import time
 import datetime as dt
 import matplotlib.pyplot as plt
 import numpy as np
 
-filename = 'dataFile.csv'
-sensor = comDevice.initBME680()
+path = os.path.dirname(os.path.abspath(__file__))
+
+filename =  path + '/dataFile.csv'
 tint = 3 # [sec]
 hukseConnect = False
+bmeConnect = False
+
+if bmeConnect:
+    sensor = comDevice.initBME680()
 
 try:
     while True:
         time.sleep(tint)
         currT = dt.datetime.now()
-        
-        temp, prea, humi, resi = comDevice.getBME680(sensor)
+
+        if bmeConnect:
+            temp, prea, humi, resi = comDevice.getBME680(sensor)
+            tempR = comDevice.rpiT()
+        else:
+            temp = prea = humi = resi = tempR = 0
         if hukseConnect:
-            resH, resT = comDevice.comHukse()             
+            resH, resT = comDevice.comHukse()
         else:
             resH = 0
             resT = 0
-            
-        tempR = comDevice.rpiT()                    
+
         print(str(currT) + '; ' + \
               str(temp) + '°C; ' + \
               str(prea) + 'hPa; ' +  \
