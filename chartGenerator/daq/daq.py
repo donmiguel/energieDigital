@@ -8,19 +8,18 @@ Created on Thu Oct 11 14:29:53 2018
 @author: pi
 """
 import os
-
 import comDevice
 import time
 import datetime as dt
 import matplotlib.pyplot as plt
 import numpy as np
 
-path = os.path.dirname(os.path.abspath(__file__))
+path = os.path.dirname(os.path.abspath(__file__)) # ermittelt Pfad in welchem dieses Skript-File liegt
 
 filename =  path + '/dataFile.csv'
 tint = 3 # [sec]
-hukseConnect = True
-bmeConnect = True
+hukseConnect = False
+bmeConnect = False
 
 if bmeConnect:
     sensor = comDevice.initBME680()
@@ -38,8 +37,7 @@ try:
         if hukseConnect:
             resH, resT = comDevice.comHukse()
         else:
-            resH = 0
-            resT = 0
+            resH = resT = 0
 
         print(str(currT) + '; ' + \
               str(temp) + '°C; ' + \
