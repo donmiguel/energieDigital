@@ -19,8 +19,8 @@ path = os.path.dirname(os.path.abspath(__file__))
 
 filename =  path + '/dataFile.csv'
 tint = 3 # [sec]
-hukseConnect = False
-bmeConnect = False
+hukseConnect = True
+bmeConnect = True
 
 if bmeConnect:
     sensor = comDevice.initBME680()

@@ -89,6 +89,7 @@ def exampleView(request):
 	plt.legend(loc="upper left")
 
 	plt.savefig('chartGenerator/static/chart.png', bbox_inches="tight")
+	plt.close()
 
 	# call chart display view with chart template
 	return displayChart(request)
