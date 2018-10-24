@@ -5,14 +5,18 @@ Bibliothek zur Kommunikation mit Engerie-Geräte
 @author: Markus Markstaler/2017
 """
 
-import serial
+
 import time
-#import socket
 import struct
 import datetime as dt
-import bme680
-#import io
+try:
+    import bme680
+    import serial
+except:
+    print('no HW moduls installed')
 
+    
+    
 def addCRC(data):  
     """
     Berechnet CRC-16 für Modubus und hängt sie an die Daten an.
@@ -148,64 +152,6 @@ def comHukse():
     return resH/100, resT/100 # Wert müssen noch /100 geteilt werden
 
 ################################################################################
-def comPRO(adr, reg, leng):
-    """
-    Kommunikation mit SmartMeter EM-PRO380 MOD von Inepro
-    
-    wert = comPRO(adr, reg, leng)
-    
-    adr   Modubus-Adresse als String '01'
-    reg   Startregister als String '200a'
-    leng  Anzahl Register '0002'
-    
-    Führt Kommunikation mit PRO380 aus und gibt Wert zurück
-    """
-    port = serial.Serial(port = '/dev/ttyAMA0', \
-            baudrate = 9600, \
-            bytesize = 8, \
-            parity = 'E', \
-            stopbits = 1, \
-            timeout = 0.5, \
-            xonxoff = False, \
-            rtscts = False, \
-            dsrdtr = False)
-            
-    fkt  = '03'   # 1 Byte/2 Sign, hex-String 
-    form = '>f'   #  > big endian, unsign shot (1) Integer
-    wert = comMod(port, adr, fkt, reg, leng, form) 
-    port.close()
-    
-    return wert
-
-###############################################################################
-def comMultical(adr, reg, leng):
-    """   
-    adr   Modubus-Adresse als String '48' -- slave adress (represented in hex)
-    reg   Startregister als String '200a'
-    leng  Anzahl Register '0002'
-    
-    Führt Kommunikation mit Multical 403 aus und gibt Wert zurĂźck
-    
-    Leads communication with Multical 403 and returns register value as wert
-    """
-    port = serial.Serial(port = '/dev/ttyAMA0', \
-            baudrate = 19200, \
-            bytesize = 8, \
-            parity = 'E', \
-            stopbits = 1, \
-            timeout = 0.5, \
-            xonxoff = False, \
-            rtscts = False, \
-            dsrdtr = False)      
-    fkt  = '03'   #1 Byte/2 Sign, hex-String 
-    form = '>f'   #> big endian, float
-    wert = comMod(port, adr, fkt, reg, leng, form)
-    port.close()
-    
-    return wert
-
-
-###############################################################################
 def initBME680():
     """
     Initialisiert den BME680 Sensor von Bosch und gibt Objekt zurück
@@ -260,4 +206,4 @@ def rpiT():
         
     return tempR
 
-##################### Beginn Programm Code ######################################
+###############################################################################
