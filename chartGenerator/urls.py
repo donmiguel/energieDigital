@@ -9,7 +9,6 @@ urlpatterns = [
 	path('chartform', views.generateChart),
 
 	# example view for csv import
-	path('example', views.exampleView),
 	path('', views.index),
 ]
 
